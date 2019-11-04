@@ -6,7 +6,7 @@ describe("Updateing records", () => {
   let joe;
 
   beforeEach(async () => {
-    joe = new User({ name: "Joe", postCount: 0 });
+    joe = new User({ name: "Joe", likes: 0 });
     await joe.save();
   });
 
@@ -41,9 +41,9 @@ describe("Updateing records", () => {
   /**
    * Using the $inc operaterator of mongoDB
    */
-  it("A user can have their postcount incremented by 1", async () => {
-    await User.update({ name: "Joe" }, { $inc: { postCount: 1 } });
+  it("A user can have their likes incremented by 1", async () => {
+    await User.update({ name: "Joe" }, { $inc: { likes: 1 } });
     const user = await User.findOne({ name: "Joe" });
-    assert(user.postCount === 1);
+    assert(user.likes === 1);
   });
 });
