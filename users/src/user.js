@@ -26,6 +26,16 @@ UserSchema.virtual("postCount").get(function() {
   return this.posts.length;
 });
 
+// same as with virtual
+/**
+ * Remove hook that deletes all dependent BlogPost from the BlogPost collection.
+ */
+UserSchema.pre("remove", function(next) {
+  const BlogPost = mongoose.model("blogpost");
+  // deprecated i think. use deleteMany in future
+  BlogPost.remove({ _id: { $in: this.blogPosts } }).then(() => next());
+});
+
 const User = mongoose.model("user", UserSchema);
 
 module.exports = User;
