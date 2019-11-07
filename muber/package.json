@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon --exec \"mocha --recursive -R min \""
+    "test": "nodemon --exec \"mocha --recursive -R min \"",
+    "start": "nodemon --exec \"node index.js\""
   },
   "author": "",
   "license": "ISC",
